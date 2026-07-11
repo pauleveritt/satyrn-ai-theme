@@ -1,0 +1,22 @@
+[project]
+name = "satyrn-ai-theme"
+version = "0.1.0"
+description = "satyrn-ai-theme: a tdom theme"
+readme = "README.md"
+authors = [
+    { name = "pauleveritt", email = "pauleveritt@me.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "tdom",
+]
+
+[dependency-groups]
+dev = [
+    "starlette",
+    "uvicorn",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.6,<0.12.0"]
+build-backend = "uv_build"

@@ -1,0 +1,4 @@
+node_modules/
+# bun's lockfile — the committed lockfile is package-lock.json (npm); bun.lockb
+# is a stray from running `bun test`.
+bun.lockb
