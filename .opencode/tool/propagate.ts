@@ -1,7 +1,9 @@
 import { tool } from "@opencode-ai/plugin"
 import { summarizeTainie } from "./tainie"
 
-const PY = process.env.TAINIE_PYTHON ?? "python"
+// Default `uv run python` (resolves the uv workspace venv where tainie is a
+// member); override with TAINIE_PYTHON for a non-uv / explicit interpreter.
+const PY_CMD = process.env.TAINIE_PYTHON ? [process.env.TAINIE_PYTHON] : ["uv", "run", "python"]
 
 export default tool({
   description:
@@ -20,7 +22,7 @@ export default tool({
       ),
   },
   async execute(args, context) {
-    const proc = Bun.spawn([PY, "-m", "tainie.propagate", args.file], {
+    const proc = Bun.spawn([...PY_CMD, "-m", "tainie.propagate", args.file], {
       cwd: context.directory,
       stdout: "pipe",
       stderr: "pipe",

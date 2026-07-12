@@ -1,0 +1,227 @@
+/* --- Base Styles & Textured Background --- */
+:root {
+    --primary-color: #e63946;
+    --text-main: #2b2d42;
+    --text-muted: #4a4e69;
+    --font-heading: 'Fredoka', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Modern CSS Textured Tan (Earthy Parchment) */
+    --earthy-tan-texture:
+        linear-gradient(to right, #f4ebe1, #ede0d4),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background-image: var(--earthy-tan-texture);
+    background-blend-mode: multiply; /* Blends the color and SVG noise smoothly */
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+/* --- Taller, Enhanced Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.2rem 5%; /* 30% taller padding */
+    max-width: 1400px;
+    margin: 0 auto;
+    background-image: var(--earthy-tan-texture);
+    background-blend-mode: multiply;
+    border-bottom: 1px solid rgba(43, 45, 66, 0.08);
+}
+
+.navbar .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Extra room reserved for the upcoming logo */
+.navbar .logo-placeholder {
+    width: 60px;
+    height: 60px;
+    background: rgba(43, 45, 66, 0.1);
+    border: 2px dashed var(--text-muted);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+}
+
+.navbar .logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.8rem; /* Bigger text */
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 1.1rem; /* Bigger text */
+    transition: color 0.2s;
+}
+
+.navbar nav a:hover {
+    color: var(--primary-color);
+}
+
+.navbar .btn-nav {
+    border: 2px solid var(--text-main);
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+}
+
+/* --- Hero Layout (40% / 60%) --- */
+.hero {
+    padding: 4rem 5%;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 4fr 6fr; /* Strict 40% / 60% split */
+    gap: 5rem;
+    align-items: center;
+}
+
+/* --- Left Column: Giant Mascot --- */
+.hero-image-side {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-mascot {
+    width: 100%;
+    max-height: 75vh; /* Allows her to scale beautifully while staying massive */
+    object-fit: contain;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.06));
+}
+
+/* --- Right Column: Text & Headings --- */
+.hero-text-side .badge {
+    background-color: rgba(230, 57, 70, 0.1);
+    color: var(--primary-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text-side h1 {
+    font-family: var(--font-heading);
+    font-size: 4.5rem; /* Massive headline */
+    line-height: 1.1;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+}
+
+.hero-story p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+}
+
+.hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.1rem 2.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+}
+
+.btn-text {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.btn-text span {
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.btn-text:hover span {
+    transform: translateX(6px);
+}
+
+/* --- Responsive Layout for Mobile/Tablets --- */
+@media (max-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr; /* Stacks vertically on smaller screens */
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-image-side {
+        order: 2; /* Keeps text first or image first depending on preference */
+    }
+
+    .hero-mascot {
+        max-height: 50vh;
+        width: auto;
+    }
+
+    .hero-text-side h1 {
+        font-size: 3rem;
+    }
+
+    .hero-story p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+}

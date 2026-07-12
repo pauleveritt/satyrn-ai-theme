@@ -1,8 +1,11 @@
 import { tool } from "@opencode-ai/plugin"
 
-// Resolve the Python that has tainie installed. Default assumes the session is
-// launched with tainie's venv active; override with TAINIE_PYTHON if not.
-const PY = process.env.TAINIE_PYTHON ?? "python"
+// Resolve how to invoke the Python that has tainie installed. Default is
+// `uv run python`, which resolves the uv workspace's venv (tainie is a
+// workspace member) with no reliance on a bare `python` being on PATH.
+// Override with TAINIE_PYTHON=/abs/path/to/python for a non-uv / explicit
+// interpreter (e.g. the eval harnesses, which run under an already-active venv).
+const PY_CMD = process.env.TAINIE_PYTHON ? [process.env.TAINIE_PYTHON] : ["uv", "run", "python"]
 
 // Pure, testable: map the recognize CLI's (stdout, stderr, exit) into a parsed
 // verdict or a thrown error carrying the CLI's own reason. No I/O.
@@ -35,7 +38,7 @@ export default tool({
       .describe('The edit intent in plain language; recorded, consulted only for tiebreaks'),
   },
   async execute(args, context) {
-    const proc = Bun.spawn([PY, "-m", "tainie.recognize", args.target, args.intent], {
+    const proc = Bun.spawn([...PY_CMD, "-m", "tainie.recognize", args.target, args.intent], {
       cwd: context.directory,
       stdout: "pipe",
       stderr: "pipe",

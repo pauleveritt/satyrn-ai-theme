@@ -1,8 +1,11 @@
 import { tool } from "@opencode-ai/plugin"
 
-// Resolve the Python that has tainie installed. Default assumes the session is
-// launched with tainie's venv active; override with TAINIE_PYTHON if not.
-const PY = process.env.TAINIE_PYTHON ?? "python"
+// Resolve how to invoke the Python that has tainie installed. Default is
+// `uv run python`, which resolves the uv workspace's venv (tainie is a
+// workspace member) with no reliance on a bare `python` being on PATH.
+// Override with TAINIE_PYTHON=/abs/path/to/python for a non-uv / explicit
+// interpreter (e.g. the eval harnesses, which run under an already-active venv).
+const PY_CMD = process.env.TAINIE_PYTHON ? [process.env.TAINIE_PYTHON] : ["uv", "run", "python"]
 
 // Pure, testable: shape a parsed DemoResult into {output, metadata}. The
 // benign/failure split is computed in Python (skip_is_benign, single source of
@@ -49,11 +52,16 @@ export function summarizeTainie(parsed: any): { output: string; metadata: any } 
 
 export default tool({
   description:
-    "Deterministically fan out a refactoring edit to every call site of a named " +
-    "Python symbol, gated by a type checker. Use for mechanical changes such as " +
-    "adding a keyword argument to all callers of a function. The workspace is the " +
-    "current session project; commit or be ready to `git diff` — edits are applied " +
-    "in place (the type gate guarantees they are type-safe).",
+    "Deterministic, type-gated refactoring of a named Python symbol: RENAME a " +
+    "parameter/field/function/class, MOVE a symbol to a new module (file split), " +
+    "EXTRACT a tdom component into its own module, ADD a keyword argument to all " +
+    "callers, CONVERT a function to a dataclass component, or CHECK a component-prop " +
+    "contract. Use this INSTEAD OF hand-editing with edit/replaceAll for any of " +
+    "these — even with only one or two call sites — because tainie's edits are " +
+    "span-precise (a text replaceAll of a renamed identifier can corrupt unrelated " +
+    "same-named strings, e.g. an HTML tag) and are blocked unless the result " +
+    "type-checks. The workspace is the current session project; commit or be ready " +
+    "to `git diff` — edits are applied in place.",
   args: {
     symbol: tool.schema
       .string()
@@ -106,7 +114,7 @@ export default tool({
       ),
   },
   async execute(args, context) {
-    const cmd = [PY, "-m", "tainie.tool", args.symbol, args.instruction]
+    const cmd = [...PY_CMD, "-m", "tainie.tool", args.symbol, args.instruction]
     if (args.new_name) cmd.push(args.new_name)
     if (args.new_module) cmd.push("--new-module", args.new_module)
     if (args.new_class) cmd.push("--new-class", args.new_class)
