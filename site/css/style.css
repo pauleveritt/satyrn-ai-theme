@@ -28,6 +28,7 @@
 }
 
 /* Brand palette — dark mode (follows OS preference, same mechanism Pico itself uses) */
+/* Dark mode via prefers-color-scheme (system setting) */
 @media only screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --pico-background-color: #1c1a17;
@@ -75,10 +76,63 @@
   }
 }
 
+/* Dark mode via toggle [data-theme="dark"] */
+:root[data-theme="dark"] {
+  --pico-background-color: #1c1a17;
+  --pico-color: #f0e6d2;
+  --pico-h1-color: #f0e6d2;
+  --pico-h2-color: #f0e6d2;
+  --pico-h3-color: #f0e6d2;
+  --pico-h4-color: #f0e6d2;
+  --pico-h5-color: #f0e6d2;
+  --pico-h6-color: #f0e6d2;
+  --pico-muted-color: #b8ab8f;
+  --pico-primary: #e8b93d;
+  --pico-primary-background: #c8722c;
+  --pico-primary-border: #c8722c;
+  --pico-primary-underline: rgba(232, 185, 61, 0.5);
+  --pico-primary-hover: #f2cc63;
+  --pico-primary-hover-background: #a85f22;
+  --pico-primary-hover-border: #a85f22;
+  --pico-primary-hover-underline: #f2cc63;
+  --pico-primary-focus: rgba(232, 185, 61, 0.5);
+  --pico-primary-inverse: #1c1a17;
+  --pico-card-background-color: #26221d;
+  --pico-card-border-color: rgba(240, 230, 210, 0.15);
+  --pico-border-color: rgba(240, 230, 210, 0.15);
+}
+
+:root[data-theme="dark"] .logo-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .logo-dark {
+  display: inline;
+  filter: drop-shadow(0 0 1px #f0e6d2) drop-shadow(0 0 1px #f0e6d2);
+}
+
+nav {
+  padding: 1.5rem 5%;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
 nav img {
-  height: 40px;
+  height: 60px;
   width: auto;
   vertical-align: middle;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--pico-color);
 }
 
 .mission-mark {
