@@ -5,13 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>Satyrn AI — AI Our Way</title>
+    <meta name="description" content="Satyrn is Jupyter for agents: open source, community-owned, local-first AI tooling for Python developers.">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="css/pico.classless.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="#" aria-label="Satyrn AI home">
+              <img class="logo-light" src="assets/satyrn-logo-light.svg" alt="Satyrn" height="40">
+              <img class="logo-dark" src="assets/satyrn-logo-dark.svg" alt="Satyrn" height="40">
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="#mission">Mission</a></li>
+          <li><a href="#local-first">Local-First</a></li>
+          <li><a href="#get-involved">Get Involved</a></li>
+          <li>
+            <label>
+              <input type="checkbox" role="switch" data-theme-toggle aria-label="Toggle dark mode">
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
     <main>
-      <h1>Satyrn AI</h1>
+      <section id="hero">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <p><mark>Jupyter for agents</mark></p>
+            <h1>AI Our Way</h1>
+            <p>Python developers want AI they can trust: open source, community-owned, local-first, thriving and innovative. Cherry on top? European.</p>
+            <p>
+              <a href="#get-involved" role="button">Get Involved</a>
+              <a href="#mission">Read the mission &rarr;</a>
+            </p>
+          </div>
+          <div class="hero-image">
+            <img src="assets/avatar.svg" alt="Illustration of a curly-haired girl holding a balloon shaped like a ringed planet, the Satyrn mascot" width="600">
+          </div>
+        </div>
+      </section>
+
+      <section id="pillars">
+        <h2>Built on four pillars</h2>
+        <div class="pillars-grid">
+          <article>
+            <h3>Open Source</h3>
+            <p>Every line is public. Fork it, audit it, ship it — no black boxes.</p>
+          </article>
+          <article>
+            <h3>Community-Owned</h3>
+            <p>Built by the people who use it, governed in the open, not owned by a single vendor.</p>
+          </article>
+          <article id="local-first">
+            <h3>Local-First</h3>
+            <p>Runs on your machine, on your terms — no mandatory round-trip to someone else's cloud.</p>
+          </article>
+          <article>
+            <h3>European</h3>
+            <p>Developed under European data and governance norms, from the ground up.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="mission">
+        <div class="mission-grid">
+          <img src="assets/satyrn-logo-light.svg" class="mission-mark logo-light" alt="" width="180">
+          <img src="assets/satyrn-logo-dark.svg" class="mission-mark logo-dark" alt="" width="180">
+          <div>
+            <h2>Jupyter for agents</h2>
+            <p>Satyrn is &ldquo;Jupyter for agents&rdquo;: a project to keep coding and coders in agentic coding by building subagents and tooling that helps Local AI succeed. From us, for us.</p>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer id="get-involved">
+      <img class="logo-light" src="assets/satyrn-logo-light.svg" alt="Satyrn" height="32">
+      <img class="logo-dark" src="assets/satyrn-logo-dark.svg" alt="Satyrn" height="32">
+      <p>AI our way.</p>
+      <p>
+        <a href="#">GitHub</a> &middot;
+        <a href="#">Community</a>
+      </p>
+      <p><small>&copy; 2026 Satyrn AI</small></p>
+    </footer>
+
     <script type="module" src="js/site.js"></script>
   </body>
 </html>
