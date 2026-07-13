@@ -1,8 +1,11 @@
-/* Brand palette — light mode (default). Selector specificity must match
-   Pico's own ":root:not([data-theme=dark])" light-mode rule, or Pico's
-   base :root/:host declaration (same specificity, earlier source order)
-   wins over a plain ":root" override regardless of stylesheet order. */
-:root:not([data-theme]) {
+/* Brand palette — light mode. Uses ":root:not([data-theme=dark])" so it
+   applies both when no theme is chosen yet (follows OS) AND when the
+   toggle sets an explicit data-theme="light". The latter is what lets a
+   dark-mode-OS visitor toggle to light: an explicit light attribute makes
+   the "@media (prefers-color-scheme: dark) :root:not([data-theme])" dark
+   rule stop matching. The selector also matches Pico's own light-mode
+   specificity so this override wins over Pico's base :root declaration. */
+:root:not([data-theme="dark"]) {
   --pico-background-color: #f7f1e3;
   --pico-color: #1c1a17;
   --pico-h1-color: #1c1a17;
