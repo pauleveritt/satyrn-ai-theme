@@ -1,3 +1,8 @@
+/* Increase base font size for larger typography */
+:root {
+  --pico-font-size: 18px;
+}
+
 /* Brand palette — light mode. Uses ":root:not([data-theme=dark])" so it
    applies both when no theme is chosen yet (follows OS) AND when the
    toggle sets an explicit data-theme="light". The latter is what lets a
@@ -115,7 +120,7 @@
 }
 
 nav {
-  padding: 1.5rem 5%;
+  padding: 2rem 5%;
 }
 
 .logo-link {
@@ -126,13 +131,13 @@ nav {
 }
 
 nav img {
-  height: 60px;
+  height: 78px;
   width: auto;
   vertical-align: middle;
 }
 
 .logo-text {
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: 700;
   font-family: 'Fredoka', sans-serif;
   color: var(--pico-color);
