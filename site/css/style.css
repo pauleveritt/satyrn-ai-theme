@@ -66,6 +66,12 @@
   }
   :root:not([data-theme]) .logo-dark {
     display: inline;
+    /* The balloon's string is drawn as a thin dark stroke with nothing
+       behind it, so it nearly disappears against the dark background
+       even though the rest of the mark (set against bright fills)
+       reads fine. A soft light halo keeps it visible without touching
+       the source artwork. */
+    filter: drop-shadow(0 0 1px #f0e6d2) drop-shadow(0 0 1px #f0e6d2);
   }
 }
 
