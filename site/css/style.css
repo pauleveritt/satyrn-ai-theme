@@ -1,0 +1,171 @@
+/* Brand palette — light mode (default). Selector specificity must match
+   Pico's own ":root:not([data-theme=dark])" light-mode rule, or Pico's
+   base :root/:host declaration (same specificity, earlier source order)
+   wins over a plain ":root" override regardless of stylesheet order. */
+:root:not([data-theme]) {
+  --pico-background-color: #f7f1e3;
+  --pico-color: #1c1a17;
+  --pico-h1-color: #1c1a17;
+  --pico-h2-color: #1c1a17;
+  --pico-h3-color: #1c1a17;
+  --pico-h4-color: #1c1a17;
+  --pico-h5-color: #1c1a17;
+  --pico-h6-color: #1c1a17;
+  --pico-muted-color: #6b5f4d;
+  --pico-primary: #c8722c;
+  --pico-primary-background: #c8722c;
+  --pico-primary-border: #c8722c;
+  --pico-primary-underline: rgba(200, 114, 44, 0.5);
+  --pico-primary-hover: #a85f22;
+  --pico-primary-hover-background: #a85f22;
+  --pico-primary-hover-border: #a85f22;
+  --pico-primary-hover-underline: #a85f22;
+  --pico-primary-focus: rgba(232, 185, 61, 0.5);
+  --pico-primary-inverse: #f7f1e3;
+  --pico-card-background-color: #fffaf0;
+  --pico-card-border-color: rgba(28, 26, 23, 0.15);
+  --pico-border-color: rgba(28, 26, 23, 0.15);
+}
+
+/* Brand palette — dark mode (follows OS preference, same mechanism Pico itself uses) */
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --pico-background-color: #1c1a17;
+    --pico-color: #f0e6d2;
+    --pico-h1-color: #f0e6d2;
+    --pico-h2-color: #f0e6d2;
+    --pico-h3-color: #f0e6d2;
+    --pico-h4-color: #f0e6d2;
+    --pico-h5-color: #f0e6d2;
+    --pico-h6-color: #f0e6d2;
+    --pico-muted-color: #b8ab8f;
+    --pico-primary: #e8b93d;
+    --pico-primary-background: #c8722c;
+    --pico-primary-border: #c8722c;
+    --pico-primary-underline: rgba(232, 185, 61, 0.5);
+    --pico-primary-hover: #f2cc63;
+    --pico-primary-hover-background: #a85f22;
+    --pico-primary-hover-border: #a85f22;
+    --pico-primary-hover-underline: #f2cc63;
+    --pico-primary-focus: rgba(232, 185, 61, 0.5);
+    --pico-primary-inverse: #1c1a17;
+    --pico-card-background-color: #26221d;
+    --pico-card-border-color: rgba(240, 230, 210, 0.15);
+    --pico-border-color: rgba(240, 230, 210, 0.15);
+  }
+}
+
+/* Logo swap: show the solid-text mark in light mode, the faded-text mark in dark mode */
+.logo-dark {
+  display: none;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .logo-light {
+    display: none;
+  }
+  :root:not([data-theme]) .logo-dark {
+    display: inline;
+  }
+}
+
+nav img {
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.mission-mark {
+  width: 180px;
+  height: auto;
+}
+
+footer#get-involved img {
+  height: 32px;
+  width: auto;
+}
+
+/* Hero */
+#hero .hero-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+#hero .hero-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Pillars */
+#pillars .pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* Mission */
+#mission .mission-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.mission-mark.logo-dark {
+  display: none;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .mission-mark.logo-light {
+    display: none;
+  }
+  :root:not([data-theme]) .mission-mark.logo-dark {
+    display: inline;
+  }
+}
+
+/* Footer */
+footer#get-involved {
+  text-align: center;
+}
+
+footer#get-involved img {
+  display: inline-block;
+}
+
+footer#get-involved .logo-dark {
+  display: none;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) footer#get-involved .logo-light {
+    display: none;
+  }
+  :root:not([data-theme]) footer#get-involved .logo-dark {
+    display: inline-block;
+  }
+}
+
+/* Responsive: stack the hero and pillars below 900px */
+@media (max-width: 900px) {
+  #hero .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #pillars .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #mission .mission-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  #pillars .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
